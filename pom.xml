@@ -23,6 +23,7 @@
 	</developers>
     <modules>
         <module>producto-service</module>
+        <module>pedido-service</module>
     </modules>
     <scm>
 		<connection/>
