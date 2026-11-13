@@ -24,6 +24,7 @@
     <modules>
         <module>producto-service</module>
         <module>pedido-service</module>
+        <module>eureka-service</module>
     </modules>
     <scm>
 		<connection/>
