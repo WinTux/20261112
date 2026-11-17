@@ -41,6 +41,6 @@ public class PedidoService {
         pedidoFallback.setIdProducto(pedido.getIdProducto());
         pedidoFallback.setCantidad(pedido.getCantidad());
         pedidoFallback.setTotal(-1.0);
-        return pedidoFallback;
+        return pedidoRepository.save(pedidoFallback);
     }
 }
