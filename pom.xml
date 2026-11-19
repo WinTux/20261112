@@ -26,6 +26,7 @@
         <module>pedido-service</module>
         <module>eureka-service</module>
         <module>configuracion-service</module>
+        <module>commons</module>
     </modules>
     <scm>
 		<connection/>

@@ -1,7 +1,7 @@
 services:
   zipkin:
     image: openzipkin/zipkin:latest
-    container_name: zipkin
+    container_name: zipkinj
     ports:
       - "9411:9411"
     networks:
@@ -9,7 +9,7 @@ services:
 
   prometheus:
     image: prom/prometheus:latest
-    container_name: prometheus
+    container_name: prometheusj
     ports:
       - "9090:9090"
     volumes:
@@ -22,7 +22,7 @@ services:
 
   grafana:
     image: grafana/grafana:latest
-    container_name: grafana
+    container_name: grafanaj
     ports:
       - "3000:3000"
     volumes:
