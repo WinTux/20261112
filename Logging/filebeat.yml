@@ -1,0 +1,17 @@
+filebeat.inputs:
+
+  - type: log
+    enabled: true
+    paths:
+      - /var/log/apps/*.log
+    fields:
+      service: "producto-service"
+  - type: log
+    enabled: true
+    paths:
+      - /var/log/apps2/*.log
+    fields:
+      service: "pedido-service"
+# Enviar eventos a Logstash
+output.logstash:
+  hosts: ["logstash:5044"]
