@@ -1,15 +1,13 @@
 services:
   zipkin:
     image: openzipkin/zipkin:latest
-    container_name: zipkinj
+    container_name: zipkin
     ports:
       - "9411:9411"
-    networks:
-      - monitoreo
 
   prometheus:
     image: prom/prometheus:latest
-    container_name: prometheusj
+    container_name: prometheus
     ports:
       - "9090:9090"
     volumes:
@@ -17,12 +15,10 @@ services:
       - prometheus-data:/prometheus
     extra_hosts:
       - "host.docker.internal:host-gateway"
-    networks:
-      - monitoreo
 
   grafana:
     image: grafana/grafana:latest
-    container_name: grafanaj
+    container_name: grafana
     ports:
       - "3000:3000"
     volumes:
@@ -30,13 +26,7 @@ services:
     environment:
       GF_SECURITY_ADMIN_USER: admin
       GF_SECURITY_ADMIN_PASSWORD: admin
-    networks:
-      - monitoreo
 
-networks:
-  monitoreo:
-    name: monitoreo
-    driver: bridge
 
 volumes:
   prometheus-data:
