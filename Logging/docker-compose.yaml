@@ -8,10 +8,10 @@ services:
     container_name: filebeat
     user: root
     restart: unless-stopped
+    command: ["-e", "--strict.perms=false"]
     volumes:
       - ./filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
-      - /home/rusok/Descargas/SistemaVentas/producto-service/target/logs:/var/log/apps:ro
-      - /home/rusok/Descargas/SistemaVentas/pedido-service/target/logs:/var/log/apps2:ro
+      - /home/rusok/Descargas/SistemaVentas/logs:/var/log/apps:ro
     depends_on:
       - logstash
     networks:
