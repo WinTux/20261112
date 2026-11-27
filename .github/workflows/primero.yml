@@ -42,4 +42,23 @@ jobs:
         cache: maven
     - name: Build with Maven solo los módulos (sin tests)
       run: mvn -B -pl producto-service,pedido-service -am clean package -DskipTests
-    
+    # --------------------------------------------------------
+    #  Levantar PRODUCTO-SERVICE
+    # --------------------------------------------------------
+    - name: Inicializando producto-service
+      env:
+        SPRING_DATASOURCE_USERNAME: ${{ secrets.DB_USERNAME }}
+        SPRING_DATASOURCE_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      run: |
+        cd producto-service
+        nohup java -jar target/*.jar \
+        --server.port=7070 \
+        --spring.datasource.url=jdbc:postgresql://localhost:5432/productodb \
+        > ../logs/producto-service.log 2>&1 &
+    - name: Esperar hasta que el servicio esté listo
+      run: sleep 25
+    - name: Ejecutando pruebas de integración (multi módulo)
+      env:
+        PRODUCTO_SERVICE_URL: https://localhost:7070
+        PEDIDO_SERVICE_URL: https://localhost:7071
+      run: mvn -B test -pl producto-service,pedido-service
